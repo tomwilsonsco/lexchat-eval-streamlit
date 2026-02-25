@@ -21,8 +21,7 @@ RESPONSES_JSONL = data_dir / "responses.jsonl"
 def _result_file_mtimes() -> tuple[float, ...]:
     """last modified times of result files for caching check"""
     return tuple(
-        path.stat().st_mtime if path.exists() else 0.0
-        for path in TEST_RESULTS.values()
+        path.stat().st_mtime if path.exists() else 0.0 for path in TEST_RESULTS.values()
     )
 
 
@@ -56,6 +55,7 @@ def load_responses(_mtime: float = 0.0) -> dict[tuple[str, int], list[dict]]:
                 key = (rec["llm_name"], int(rec["question_id"]))
                 idx[key].append(rec)
     return dict(idx)
+
 
 # do not keep the individual response results of these metrics as only make sense
 # comparing multiple
@@ -429,7 +429,11 @@ def _render_chat_interaction(records: list[dict]) -> None:
                     tool_name = tool.get("name", f"tool_{i}")
                     is_lex_api = any(
                         k in tool_name
-                        for k in ("search_legislation", "get_legislation_text", "get_legislation")
+                        for k in (
+                            "search_legislation",
+                            "get_legislation_text",
+                            "get_legislation",
+                        )
                     )
                     st.markdown(f"🔧 **{tool_name}**")
                     if is_lex_api:
@@ -442,7 +446,7 @@ def _render_chat_interaction(records: list[dict]) -> None:
                             payload = params.get("payload") or {}
                             st.markdown(
                                 f'<div style="background:#0d1117;border-left:3px solid #58a6ff;'
-                                f'padding:8px 12px;border-radius:4px;margin:4px 0 2px 0;'
+                                f"padding:8px 12px;border-radius:4px;margin:4px 0 2px 0;"
                                 f'font-size:0.85em;font-family:monospace;color:#58a6ff;">'
                                 f"📡 {method} {url}</div>",
                                 unsafe_allow_html=True,
@@ -550,9 +554,7 @@ def main() -> None:
 
     available = [name for name, path in TEST_RESULTS.items() if path.exists()]
     if not available:
-        st.error(
-            "No results files found."
-        )
+        st.error("No results files found.")
         st.stop()
 
     st.caption(f"Loaded results from: {', '.join(available)}")
@@ -565,6 +567,15 @@ def main() -> None:
     if not responses:
         st.warning(
             f"responses.jsonl not found at {RESPONSES_JSONL} — chat interaction tab will be empty."
+        )
+
+        st.markdown(
+            """
+        <style>
+            .block-container { padding-top: 1.7rem; }
+        </style>
+        """,
+            unsafe_allow_html=True,
         )
 
     _render_top_summary(hierarchy)
