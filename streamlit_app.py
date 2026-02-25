@@ -572,7 +572,7 @@ def main() -> None:
     st.markdown(
         """
     <style>
-        .block-container { padding-top: 1.7rem; }
+        .block-container { padding-top: 1.8rem; }
     </style>
     """,
         unsafe_allow_html=True,
