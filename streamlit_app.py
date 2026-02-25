@@ -569,14 +569,14 @@ def main() -> None:
             f"responses.jsonl not found at {RESPONSES_JSONL} — chat interaction tab will be empty."
         )
 
-        st.markdown(
-            """
-        <style>
-            .block-container { padding-top: 1.7rem; }
-        </style>
-        """,
-            unsafe_allow_html=True,
-        )
+    st.markdown(
+        """
+    <style>
+        .block-container { padding-top: 1.7rem; }
+    </style>
+    """,
+        unsafe_allow_html=True,
+    )
 
     _render_top_summary(hierarchy)
     st.divider()
