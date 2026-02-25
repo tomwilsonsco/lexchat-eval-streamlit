@@ -1,0 +1,1114 @@
+[
+  {
+    "type": "tool_start",
+    "tool": "Deep Research: PLAN {\"steps\": [{\"step\": 1, \"action\": \"Search for the establishing legislation or governing document for Food Standards Scotland (FSS).\", \"justification\": \"The appointment process for the chair of a public body in the UK is typically outlined in the legislation that establishes the body or in its governance rules.\"}, {\"step\": 2, \"action\": \"Review the legislation or governance documents to identify the specific section detailing the appointment process for the chair.\", \"justification\": \"This will provide the legal basis and procedural requirements for the appointment.\"}, {\"step\": 3, \"action\": \"Search for supplementary guidance or official publications (e.g., from the Scottish Government or FSS) that clarify the appointment process.\", \"justification\": \"This will provide practical details or updates not explicitly stated in the legislation.\"}, {\"step\": 4, \"action\": \"Synthesize findings into a comprehensive answer.\", \"justification\": \"This ensures clarity and completeness for the user.\"}]}te\u0159\u00edsearch_legislation"
+  },
+  {
+    "type": "tool_end",
+    "tool": "Deep Research: PLAN {\"steps\": [{\"step\": 1, \"action\": \"Search for the establishing legislation or governing document for Food Standards Scotland (FSS).\", \"justification\": \"The appointment process for the chair of a public body in the UK is typically outlined in the legislation that establishes the body or in its governance rules.\"}, {\"step\": 2, \"action\": \"Review the legislation or governance documents to identify the specific section detailing the appointment process for the chair.\", \"justification\": \"This will provide the legal basis and procedural requirements for the appointment.\"}, {\"step\": 3, \"action\": \"Search for supplementary guidance or official publications (e.g., from the Scottish Government or FSS) that clarify the appointment process.\", \"justification\": \"This will provide practical details or updates not explicitly stated in the legislation.\"}, {\"step\": 4, \"action\": \"Synthesize findings into a comprehensive answer.\", \"justification\": \"This ensures clarity and completeness for the user.\"}]}te\u0159\u00edsearch_legislation",
+    "result": "Done"
+  },
+  {
+    "type": "tool_start",
+    "tool": "Deep Research: search_web"
+  },
+  {
+    "type": "tool_end",
+    "tool": "Deep Research: search_web",
+    "result": "Done"
+  },
+  {
+    "type": "tool_start",
+    "tool": "Deep Research: search_legislation"
+  },
+  {
+    "type": "tool_end",
+    "tool": "Deep Research: search_legislation",
+    "result": "Done"
+  },
+  {
+    "type": "tool_start",
+    "tool": "Deep Research: search_web"
+  },
+  {
+    "type": "tool_end",
+    "tool": "Deep Research: search_web",
+    "result": "Done"
+  },
+  {
+    "type": "tool_start",
+    "tool": "Deep Research: get_legislation_text"
+  },
+  {
+    "type": "tool_end",
+    "tool": "Deep Research: get_legislation_text",
+    "result": "Done"
+  },
+  {
+    "type": "token",
+    "content": "###"
+  },
+  {
+    "type": "token",
+    "content": " **How"
+  },
+  {
+    "type": "token",
+    "content": " the Chair of Food"
+  },
+  {
+    "type": "token",
+    "content": " Standards Scotland is App"
+  },
+  {
+    "type": "token",
+    "content": "ointed**\n\nThe"
+  },
+  {
+    "type": "token",
+    "content": " appointment process"
+  },
+  {
+    "type": "token",
+    "content": " for the **Ch"
+  },
+  {
+    "type": "token",
+    "content": "air of Food Standards"
+  },
+  {
+    "type": "token",
+    "content": " Scotland ("
+  },
+  {
+    "type": "token",
+    "content": "FSS)** is"
+  },
+  {
+    "type": "token",
+    "content": " governed by the **"
+  },
+  {
+    "type": "token",
+    "content": "Food ("
+  },
+  {
+    "type": "token",
+    "content": "Scotland) Act"
+  },
+  {
+    "type": "token",
+    "content": " 2015**, which established"
+  },
+  {
+    "type": "token",
+    "content": " F"
+  },
+  {
+    "type": "token",
+    "content": "SS as"
+  },
+  {
+    "type": "token",
+    "content": " a non"
+  },
+  {
+    "type": "token",
+    "content": "-min"
+  },
+  {
+    "type": "token",
+    "content": "isterial public"
+  },
+  {
+    "type": "token",
+    "content": " body responsible"
+  },
+  {
+    "type": "token",
+    "content": " for food"
+  },
+  {
+    "type": "token",
+    "content": " safety,"
+  },
+  {
+    "type": "token",
+    "content": " standards"
+  },
+  {
+    "type": "token",
+    "content": ", and nutrition"
+  },
+  {
+    "type": "token",
+    "content": " in Scotland.\n\n---\n\n"
+  },
+  {
+    "type": "token",
+    "content": "####"
+  },
+  {
+    "type": "token",
+    "content": " **Key"
+  },
+  {
+    "type": "token",
+    "content": " Pro"
+  },
+  {
+    "type": "token",
+    "content": "visions from"
+  },
+  {
+    "type": "token",
+    "content": " the Food"
+  },
+  {
+    "type": "token",
+    "content": " (Scotland) Act"
+  },
+  {
+    "type": "token",
+    "content": " 201"
+  },
+  {
+    "type": "token",
+    "content": "5**\n\n1."
+  },
+  {
+    "type": "token",
+    "content": " **Appointment"
+  },
+  {
+    "type": "token",
+    "content": " by"
+  },
+  {
+    "type": "token",
+    "content": " Scottish"
+  },
+  {
+    "type": "token",
+    "content": " Ministers**\n   -"
+  },
+  {
+    "type": "token",
+    "content": " The **Chair"
+  },
+  {
+    "type": "token",
+    "content": " of"
+  },
+  {
+    "type": "token",
+    "content": " Food Standards Scotland"
+  },
+  {
+    "type": "token",
+    "content": " is appointed"
+  },
+  {
+    "type": "token",
+    "content": " directly"
+  },
+  {
+    "type": "token",
+    "content": " by the Scottish Ministers"
+  },
+  {
+    "type": "token",
+    "content": "** (Section"
+  },
+  {
+    "type": "token",
+    "content": " 6"
+  },
+  {
+    "type": "token",
+    "content": "(1"
+  },
+  {
+    "type": "token",
+    "content": ")(a)).\n"
+  },
+  {
+    "type": "token",
+    "content": "   - The Scottish"
+  },
+  {
+    "type": "token",
+    "content": " Ministers also"
+  },
+  {
+    "type": "token",
+    "content": " appoint **between"
+  },
+  {
+    "type": "token",
+    "content": " 3 and "
+  },
+  {
+    "type": "token",
+    "content": "7 additional members"
+  },
+  {
+    "type": "token",
+    "content": "** to"
+  },
+  {
+    "type": "token",
+    "content": " the"
+  },
+  {
+    "type": "token",
+    "content": " FSS board"
+  },
+  {
+    "type": "token",
+    "content": " ("
+  },
+  {
+    "type": "token",
+    "content": "Section 6("
+  },
+  {
+    "type": "token",
+    "content": "1)("
+  },
+  {
+    "type": "token",
+    "content": "b)).\n\n2."
+  },
+  {
+    "type": "token",
+    "content": " **Elig"
+  },
+  {
+    "type": "token",
+    "content": "ibility Criteria"
+  },
+  {
+    "type": "token",
+    "content": "**\n   - A"
+  },
+  {
+    "type": "token",
+    "content": " person **"
+  },
+  {
+    "type": "token",
+    "content": "cannot** be appointed"
+  },
+  {
+    "type": "token",
+    "content": " as a member"
+  },
+  {
+    "type": "token",
+    "content": " ("
+  },
+  {
+    "type": "token",
+    "content": "including the"
+  },
+  {
+    "type": "token",
+    "content": " Chair) if"
+  },
+  {
+    "type": "token",
+    "content": " they are:\n    "
+  },
+  {
+    "type": "token",
+    "content": " - A **member"
+  },
+  {
+    "type": "token",
+    "content": " of the Scottish Parliament"
+  },
+  {
+    "type": "token",
+    "content": " ("
+  },
+  {
+    "type": "token",
+    "content": "MS"
+  },
+  {
+    "type": "token",
+    "content": "P)**,\n"
+  },
+  {
+    "type": "token",
+    "content": "     - A **"
+  },
+  {
+    "type": "token",
+    "content": "member of the House"
+  },
+  {
+    "type": "token",
+    "content": " of Commons"
+  },
+  {
+    "type": "token",
+    "content": "**"
+  },
+  {
+    "type": "token",
+    "content": ",\n     - A"
+  },
+  {
+    "type": "token",
+    "content": " **member of the"
+  },
+  {
+    "type": "token",
+    "content": " European Parliament**,\n"
+  },
+  {
+    "type": "token",
+    "content": "     - An"
+  },
+  {
+    "type": "token",
+    "content": " **office-h"
+  },
+  {
+    "type": "token",
+    "content": "older in the Scottish"
+  },
+  {
+    "type": "token",
+    "content": " Administration"
+  },
+  {
+    "type": "token",
+    "content": "**,\n"
+  },
+  {
+    "type": "token",
+    "content": "     - A **"
+  },
+  {
+    "type": "token",
+    "content": "councillor of"
+  },
+  {
+    "type": "token",
+    "content": " any local authority"
+  },
+  {
+    "type": "token",
+    "content": "**,"
+  },
+  {
+    "type": "token",
+    "content": " or\n     -"
+  },
+  {
+    "type": "token",
+    "content": " An **employee"
+  },
+  {
+    "type": "token",
+    "content": " of any"
+  },
+  {
+    "type": "token",
+    "content": " local authority**"
+  },
+  {
+    "type": "token",
+    "content": " (Section 6"
+  },
+  {
+    "type": "token",
+    "content": "(2)).\n\n3"
+  },
+  {
+    "type": "token",
+    "content": ". **Equal"
+  },
+  {
+    "type": "token",
+    "content": " Opportun"
+  },
+  {
+    "type": "token",
+    "content": "ities Requ"
+  },
+  {
+    "type": "token",
+    "content": "irement**\n   -"
+  },
+  {
+    "type": "token",
+    "content": " The Scottish Ministers must"
+  },
+  {
+    "type": "token",
+    "content": " make"
+  },
+  {
+    "type": "token",
+    "content": " appointments in"
+  },
+  {
+    "type": "token",
+    "content": " a manner"
+  },
+  {
+    "type": "token",
+    "content": " that **enc"
+  },
+  {
+    "type": "token",
+    "content": "ourages equal"
+  },
+  {
+    "type": "token",
+    "content": " opportunities**,"
+  },
+  {
+    "type": "token",
+    "content": " particularly in observ"
+  },
+  {
+    "type": "token",
+    "content": "ance"
+  },
+  {
+    "type": "token",
+    "content": " of the **equal"
+  },
+  {
+    "type": "token",
+    "content": " opportunity"
+  },
+  {
+    "type": "token",
+    "content": " requirements** as"
+  },
+  {
+    "type": "token",
+    "content": " defined in the **"
+  },
+  {
+    "type": "token",
+    "content": "Scotland Act"
+  },
+  {
+    "type": "token",
+    "content": " 199"
+  },
+  {
+    "type": "token",
+    "content": "8** (Section"
+  },
+  {
+    "type": "token",
+    "content": " 6(3"
+  },
+  {
+    "type": "token",
+    "content": ")-("
+  },
+  {
+    "type": "token",
+    "content": "4)).\n\n4."
+  },
+  {
+    "type": "token",
+    "content": " **Term of"
+  },
+  {
+    "type": "token",
+    "content": " Appointment**\n  "
+  },
+  {
+    "type": "token",
+    "content": " - The **term"
+  },
+  {
+    "type": "token",
+    "content": " and conditions"
+  },
+  {
+    "type": "token",
+    "content": "**"
+  },
+  {
+    "type": "token",
+    "content": " of the Chair"
+  },
+  {
+    "type": "token",
+    "content": "\u2019s appointment are determined"
+  },
+  {
+    "type": "token",
+    "content": " by the **Scott"
+  },
+  {
+    "type": "token",
+    "content": "ish Ministers** ("
+  },
+  {
+    "type": "token",
+    "content": "Section 6("
+  },
+  {
+    "type": "token",
+    "content": "5)).\n  "
+  },
+  {
+    "type": "token",
+    "content": " - A member"
+  },
+  {
+    "type": "token",
+    "content": " ("
+  },
+  {
+    "type": "token",
+    "content": "including the Chair)"
+  },
+  {
+    "type": "token",
+    "content": " may **res"
+  },
+  {
+    "type": "token",
+    "content": "ign** by"
+  },
+  {
+    "type": "token",
+    "content": " not"
+  },
+  {
+    "type": "token",
+    "content": "ifying the Scottish"
+  },
+  {
+    "type": "token",
+    "content": " Ministers in writing"
+  },
+  {
+    "type": "token",
+    "content": " (Section 6"
+  },
+  {
+    "type": "token",
+    "content": "(6)"
+  },
+  {
+    "type": "token",
+    "content": ").\n   - A"
+  },
+  {
+    "type": "token",
+    "content": " member may"
+  },
+  {
+    "type": "token",
+    "content": " be **re-"
+  },
+  {
+    "type": "token",
+    "content": "appointed** after"
+  },
+  {
+    "type": "token",
+    "content": " their"
+  },
+  {
+    "type": "token",
+    "content": " term ends"
+  },
+  {
+    "type": "token",
+    "content": " (Section"
+  },
+  {
+    "type": "token",
+    "content": " 6(7"
+  },
+  {
+    "type": "token",
+    "content": ")).\n\n5. **"
+  },
+  {
+    "type": "token",
+    "content": "Early Term"
+  },
+  {
+    "type": "token",
+    "content": "ination of App"
+  },
+  {
+    "type": "token",
+    "content": "ointment**\n   -"
+  },
+  {
+    "type": "token",
+    "content": " The Scottish"
+  },
+  {
+    "type": "token",
+    "content": " Ministers may"
+  },
+  {
+    "type": "token",
+    "content": " **end"
+  },
+  {
+    "type": "token",
+    "content": " a"
+  },
+  {
+    "type": "token",
+    "content": " member\u2019s appointment**"
+  },
+  {
+    "type": "token",
+    "content": " if"
+  },
+  {
+    "type": "token",
+    "content": ":\n"
+  },
+  {
+    "type": "token",
+    "content": "     - The member"
+  },
+  {
+    "type": "token",
+    "content": " becomes **"
+  },
+  {
+    "type": "token",
+    "content": "an"
+  },
+  {
+    "type": "token",
+    "content": " und"
+  },
+  {
+    "type": "token",
+    "content": "isch"
+  },
+  {
+    "type": "token",
+    "content": "arged bankrupt"
+  },
+  {
+    "type": "token",
+    "content": "**,\n"
+  },
+  {
+    "type": "token",
+    "content": "     - The member"
+  },
+  {
+    "type": "token",
+    "content": " has"
+  },
+  {
+    "type": "token",
+    "content": " been"
+  },
+  {
+    "type": "token",
+    "content": " **abs"
+  },
+  {
+    "type": "token",
+    "content": "ent from"
+  },
+  {
+    "type": "token",
+    "content": " meetings for"
+  },
+  {
+    "type": "token",
+    "content": " more"
+  },
+  {
+    "type": "token",
+    "content": " than "
+  },
+  {
+    "type": "token",
+    "content": "6 consecutive"
+  },
+  {
+    "type": "token",
+    "content": " months without"
+  },
+  {
+    "type": "token",
+    "content": " permission"
+  },
+  {
+    "type": "token",
+    "content": "**"
+  },
+  {
+    "type": "token",
+    "content": ",\n     - The"
+  },
+  {
+    "type": "token",
+    "content": " member is **un"
+  },
+  {
+    "type": "token",
+    "content": "able to perform"
+  },
+  {
+    "type": "token",
+    "content": " their"
+  },
+  {
+    "type": "token",
+    "content": " functions"
+  },
+  {
+    "type": "token",
+    "content": "**,"
+  },
+  {
+    "type": "token",
+    "content": " or\n     -"
+  },
+  {
+    "type": "token",
+    "content": " The member is **"
+  },
+  {
+    "type": "token",
+    "content": "uns"
+  },
+  {
+    "type": "token",
+    "content": "uitable"
+  },
+  {
+    "type": "token",
+    "content": " to"
+  },
+  {
+    "type": "token",
+    "content": " continue** (Section"
+  },
+  {
+    "type": "token",
+    "content": " 7("
+  },
+  {
+    "type": "token",
+    "content": "2)).\n\n6."
+  },
+  {
+    "type": "token",
+    "content": " **De"
+  },
+  {
+    "type": "token",
+    "content": "puty Chair"
+  },
+  {
+    "type": "token",
+    "content": "**\n   - The"
+  },
+  {
+    "type": "token",
+    "content": " Scottish Ministers may assign"
+  },
+  {
+    "type": "token",
+    "content": " one"
+  },
+  {
+    "type": "token",
+    "content": " of the other"
+  },
+  {
+    "type": "token",
+    "content": " members to **"
+  },
+  {
+    "type": "token",
+    "content": "deput"
+  },
+  {
+    "type": "token",
+    "content": "ise for"
+  },
+  {
+    "type": "token",
+    "content": " the Chair** or"
+  },
+  {
+    "type": "token",
+    "content": " to **act"
+  },
+  {
+    "type": "token",
+    "content": " as Chair"
+  },
+  {
+    "type": "token",
+    "content": "**"
+  },
+  {
+    "type": "token",
+    "content": " if there is a"
+  },
+  {
+    "type": "token",
+    "content": " vacancy (Section"
+  },
+  {
+    "type": "token",
+    "content": " 6(8"
+  },
+  {
+    "type": "token",
+    "content": ")-("
+  },
+  {
+    "type": "token",
+    "content": "9)).\n\n---\n\n"
+  },
+  {
+    "type": "token",
+    "content": "####"
+  },
+  {
+    "type": "token",
+    "content": " **Summary"
+  },
+  {
+    "type": "token",
+    "content": " of the"
+  },
+  {
+    "type": "token",
+    "content": " App"
+  },
+  {
+    "type": "token",
+    "content": "ointment Process**\n1"
+  },
+  {
+    "type": "token",
+    "content": ". **Nom"
+  },
+  {
+    "type": "token",
+    "content": "ination/"
+  },
+  {
+    "type": "token",
+    "content": "Selection**: The Scottish"
+  },
+  {
+    "type": "token",
+    "content": " Ministers identify"
+  },
+  {
+    "type": "token",
+    "content": " a"
+  },
+  {
+    "type": "token",
+    "content": " suitable candidate for the"
+  },
+  {
+    "type": "token",
+    "content": " Chair position"
+  },
+  {
+    "type": "token",
+    "content": ".\n2. **"
+  },
+  {
+    "type": "token",
+    "content": "Appointment**: The Scottish"
+  },
+  {
+    "type": "token",
+    "content": " Ministers formally appoint the"
+  },
+  {
+    "type": "token",
+    "content": " Chair,"
+  },
+  {
+    "type": "token",
+    "content": " ensuring"
+  },
+  {
+    "type": "token",
+    "content": " they"
+  },
+  {
+    "type": "token",
+    "content": " meet"
+  },
+  {
+    "type": "token",
+    "content": " the eligibility"
+  },
+  {
+    "type": "token",
+    "content": " criteria.\n3."
+  },
+  {
+    "type": "token",
+    "content": " **Term**:"
+  },
+  {
+    "type": "token",
+    "content": " The Chair"
+  },
+  {
+    "type": "token",
+    "content": " serves"
+  },
+  {
+    "type": "token",
+    "content": " for"
+  },
+  {
+    "type": "token",
+    "content": " a fixed"
+  },
+  {
+    "type": "token",
+    "content": " term"
+  },
+  {
+    "type": "token",
+    "content": ","
+  },
+  {
+    "type": "token",
+    "content": " as determined by the"
+  },
+  {
+    "type": "token",
+    "content": " Scottish Ministers.\n4"
+  },
+  {
+    "type": "token",
+    "content": ". **Reappointment"
+  },
+  {
+    "type": "token",
+    "content": "/"
+  },
+  {
+    "type": "token",
+    "content": "Rem"
+  },
+  {
+    "type": "token",
+    "content": "oval**: The Chair"
+  },
+  {
+    "type": "token",
+    "content": " may be reappoint"
+  },
+  {
+    "type": "token",
+    "content": "ed or removed"
+  },
+  {
+    "type": "token",
+    "content": " under"
+  },
+  {
+    "type": "token",
+    "content": " specific conditions outlined"
+  },
+  {
+    "type": "token",
+    "content": " in the Act"
+  },
+  {
+    "type": "token",
+    "content": ".\n\n---\n"
+  },
+  {
+    "type": "token",
+    "content": "####"
+  },
+  {
+    "type": "token",
+    "content": " **References"
+  },
+  {
+    "type": "token",
+    "content": "**\n- **["
+  },
+  {
+    "type": "token",
+    "content": "Food (Scotland)"
+  },
+  {
+    "type": "token",
+    "content": " Act 20"
+  },
+  {
+    "type": "token",
+    "content": "15](http"
+  },
+  {
+    "type": "token",
+    "content": "://www.leg"
+  },
+  {
+    "type": "token",
+    "content": "islation.gov.uk"
+  },
+  {
+    "type": "token",
+    "content": "/asp"
+  },
+  {
+    "type": "token",
+    "content": "/201"
+  },
+  {
+    "type": "token",
+    "content": "5/1)**"
+  },
+  {
+    "type": "token",
+    "content": " ("
+  },
+  {
+    "type": "token",
+    "content": "Sections 6"
+  },
+  {
+    "type": "token",
+    "content": " and"
+  },
+  {
+    "type": "token",
+    "content": " 7)."
+  },
+  {
+    "type": "result",
+    "message": {
+      "role": "assistant",
+      "content": "### **How the Chair of Food Standards Scotland is Appointed**\n\nThe appointment process for the **Chair of Food Standards Scotland (FSS)** is governed by the **Food (Scotland) Act 2015**, which established FSS as a non-ministerial public body responsible for food safety, standards, and nutrition in Scotland.\n\n---\n\n#### **Key Provisions from the Food (Scotland) Act 2015**\n\n1. **Appointment by Scottish Ministers**\n   - The **Chair of Food Standards Scotland is appointed directly by the Scottish Ministers** (Section 6(1)(a)).\n   - The Scottish Ministers also appoint **between 3 and 7 additional members** to the FSS board (Section 6(1)(b)).\n\n2. **Eligibility Criteria**\n   - A person **cannot** be appointed as a member (including the Chair) if they are:\n     - A **member of the Scottish Parliament (MSP)**,\n     - A **member of the House of Commons**,\n     - A **member of the European Parliament**,\n     - An **office-holder in the Scottish Administration**,\n     - A **councillor of any local authority**, or\n     - An **employee of any local authority** (Section 6(2)).\n\n3. **Equal Opportunities Requirement**\n   - The Scottish Ministers must make appointments in a manner that **encourages equal opportunities**, particularly in observance of the **equal opportunity requirements** as defined in the **Scotland Act 1998** (Section 6(3)-(4)).\n\n4. **Term of Appointment**\n   - The **term and conditions** of the Chair\u2019s appointment are determined by the **Scottish Ministers** (Section 6(5)).\n   - A member (including the Chair) may **resign** by notifying the Scottish Ministers in writing (Section 6(6)).\n   - A member may be **re-appointed** after their term ends (Section 6(7)).\n\n5. **Early Termination of Appointment**\n   - The Scottish Ministers may **end a member\u2019s appointment** if:\n     - The member becomes **an undischarged bankrupt**,\n     - The member has been **absent from meetings for more than 6 consecutive months without permission**,\n     - The member is **unable to perform their functions**, or\n     - The member is **unsuitable to continue** (Section 7(2)).\n\n6. **Deputy Chair**\n   - The Scottish Ministers may assign one of the other members to **deputise for the Chair** or to **act as Chair** if there is a vacancy (Section 6(8)-(9)).\n\n---\n\n#### **Summary of the Appointment Process**\n1. **Nomination/Selection**: The Scottish Ministers identify a suitable candidate for the Chair position.\n2. **Appointment**: The Scottish Ministers formally appoint the Chair, ensuring they meet the eligibility criteria.\n3. **Term**: The Chair serves for a fixed term, as determined by the Scottish Ministers.\n4. **Reappointment/Removal**: The Chair may be reappointed or removed under specific conditions outlined in the Act.\n\n---\n#### **References**\n- **[Food (Scotland) Act 2015](http://www.legislation.gov.uk/asp/2015/1)** (Sections 6 and 7)."
+    }
+  }
+]

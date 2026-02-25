@@ -1,0 +1,37 @@
+{
+    "name": "lexeval-streamlit",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": "..",
+        "args": {
+            "VARIANT": "3.12-slim"
+        }
+    },
+    "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.analysis.extraPaths": ["/app"]
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "installZsh": "false",
+            "username": "root",
+            "userUid": "0",
+            "userGid": "0",
+            "upgradePackages": "true"
+        },
+        "ghcr.io/devcontainers/features/git:1": {}
+    },
+    "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-toolsai.jupyter"
+    ],
+    "remoteUser": "root",
+    "forwardPorts": [8501],
+    "workspaceFolder": "/app",
+    "mounts": [
+        "source=${localWorkspaceFolder}/,target=/app,type=bind,consistency=cached"
+    ],
+    "shutdownAction": "stopContainer"
+}
