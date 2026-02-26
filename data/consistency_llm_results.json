@@ -232,5 +232,83 @@
     "reason": "Mean consistency score: 0.700 (1 comparison(s), threshold: 0.7). vs ref 1: While both responses agree on the extent of the Scottish Parliament's devolved powers in regulating most health professions and specify what is reserved to the UK Parliament, Response B provides a more generalized overview without detailing the specific regulatory frameworks and statutory details that Response A includes. However, they ultimately reach similar conclusions regarding the legislative competence of the Scottish Parliament.",
     "error": "",
     "tools_used": null
+  },
+  {
+    "llm_name": "glm-5:cloud",
+    "question_id": 1,
+    "question": "What does section 6 of the Data Protection Act say?",
+    "test_name": "consistency_llm",
+    "metric_name": "Consistency (AI Judge)",
+    "score": 1.0,
+    "threshold": 0.7,
+    "passed": true,
+    "reason": "Mean consistency score: 1.000 (1 comparison(s), threshold: 0.7). vs ref 1: Both responses provide a similar interpretation of Section 6 of the Data Protection Act 2018, detailing the definition of 'controller' and its application in the context of the UK GDPR. They both also mention the repealed Data Protection Act 1998 and clarify its relevance. Overall, they cover the same provisions and reach consistent conclusions about the implications of Section 6.",
+    "error": "",
+    "tools_used": null
+  },
+  {
+    "llm_name": "glm-5:cloud",
+    "question_id": 2,
+    "question": "What powers of direction do the Scottish Ministers have in relation to Health Boards in Scotland?",
+    "test_name": "consistency_llm",
+    "metric_name": "Consistency (AI Judge)",
+    "score": 0.4,
+    "threshold": 0.7,
+    "passed": false,
+    "reason": "Mean consistency score: 0.400 (1 comparison(s), threshold: 0.7). vs ref 1: Response B addresses several additional provisions and directions beyond what is contained in Response A, including specific functional directions related to staffing and inspections. This expansion in scope means that while both responses cover similar core powers, Response B provides a broader picture that could lead to a substantially different understanding by a user.",
+    "error": "",
+    "tools_used": null
+  },
+  {
+    "llm_name": "glm-5:cloud",
+    "question_id": 3,
+    "question": "What is the process for making and reviewing an Integration Joint Board's strategic plan?",
+    "test_name": "consistency_llm",
+    "metric_name": "Consistency (AI Judge)",
+    "score": 1.0,
+    "threshold": 0.7,
+    "passed": true,
+    "reason": "Mean consistency score: 1.000 (1 comparison(s), threshold: 0.7). vs ref 1: Both responses address the same provisions of the Public Bodies (Joint Working) (Scotland) Act 2014, cover identical steps in the process of making and reviewing a strategic plan, and reach the same conclusions about the requirements and processes involved. The minor differences in wording and emphasis do not affect the overall consistency in scope and conclusion.",
+    "error": "",
+    "tools_used": null
+  },
+  {
+    "llm_name": "glm-5:cloud",
+    "question_id": 4,
+    "question": "What powers does the Information Commissioner have to impose penalties for breach of data protection duties?",
+    "test_name": "consistency_llm",
+    "metric_name": "Consistency (AI Judge)",
+    "score": 0.4,
+    "threshold": 0.7,
+    "passed": false,
+    "reason": "Mean consistency score: 0.400 (1 comparison(s), threshold: 0.7). vs ref 1: Response B includes additional details regarding procedural requirements and specific restrictions on penalty powers that are not present in Response A. Although both responses cover the statutory bases for penalties and reach similar conclusions about potential fines, the additional content in Response B leads to a significantly different impression of the Information Commissioner's powers.",
+    "error": "",
+    "tools_used": null
+  },
+  {
+    "llm_name": "glm-5:cloud",
+    "question_id": 5,
+    "question": "How is the chair of Food Standards Scotland appointed?",
+    "test_name": "consistency_llm",
+    "metric_name": "Consistency (AI Judge)",
+    "score": 0.4,
+    "threshold": 0.7,
+    "passed": false,
+    "reason": "Mean consistency score: 0.400 (1 comparison(s), threshold: 0.7). vs ref 1: Response B covers additional details about resignation, removal, and powers of the Scottish Ministers not mentioned in Response A, which changes the scope of information presented, despite both addressing the appointment process.",
+    "error": "",
+    "tools_used": null
+  },
+  {
+    "llm_name": "glm-5:cloud",
+    "question_id": 6,
+    "question": "To what extent is regulation of the health professions within the legislative competence of the Scottish Parliament?",
+    "test_name": "consistency_llm",
+    "metric_name": "Consistency (AI Judge)",
+    "score": 0.7,
+    "threshold": 0.7,
+    "passed": true,
+    "reason": "Mean consistency score: 0.700 (1 comparison(s), threshold: 0.7). vs ref 1: Both responses conclude that the regulation of health professions is predominantly reserved to the UK Parliament and share the same legal framework under the Scotland Act 1998. However, Response B presents additional details on specific Acts and a unique consent mechanism not mentioned in Response A, creating a minor difference in scope.",
+    "error": "",
+    "tools_used": null
   }
 ]
