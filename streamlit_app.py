@@ -61,6 +61,21 @@ def load_responses(_mtime: float = 0.0) -> dict[tuple[str, int], list[dict]]:
 # comparing multiple
 _AGGREGATE_ONLY_METRICS = {"Consistency (Simple)", "Consistency (AI Judge)"}
 
+LLM_DISPLAY_ORDER: list[str] = [
+    "gpt-oss:120b-cloud",
+    "kimi-k2-thinking:cloud",
+    "glm-5:cloud",
+    "mistral-large-3:675b-cloud",
+]
+
+
+def _llm_sort_key(name: str) -> tuple[int, str]:
+    try:
+        return (LLM_DISPLAY_ORDER.index(name), name)
+    except ValueError:
+        return (len(LLM_DISPLAY_ORDER), name)
+
+
 # order shown in streamlit
 METRIC_DISPLAY_ORDER: list[str] = [
     "Tool Usage",
@@ -187,7 +202,7 @@ def _status_icon(passed: bool) -> str:
 def _render_top_summary(hierarchy: dict) -> None:
     """summary rows at the top of the page for each LLM. Expand to show
     mean score per metric across all questions."""
-    for llm in sorted(hierarchy.keys()):
+    for llm in sorted(hierarchy.keys(), key=_llm_sort_key):
         q_data = hierarchy[llm]
         all_m = [r for results in q_data.values() for r in results]
         total = len(all_m)
@@ -581,7 +596,7 @@ def main() -> None:
     _render_top_summary(hierarchy)
     st.divider()
 
-    llm_names = sorted(hierarchy.keys())
+    llm_names = sorted(hierarchy.keys(), key=_llm_sort_key)
     llm_tabs = st.tabs(llm_names)
 
     for tab, llm in zip(llm_tabs, llm_names):
