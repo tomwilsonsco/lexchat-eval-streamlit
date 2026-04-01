@@ -1,79 +1,170 @@
 from __future__ import annotations
 
 import json
+import sys
 from collections import defaultdict
 from pathlib import Path
 
 import streamlit as st
 
-data_dir = Path(__file__).parent / "data"
+import duckdb
 
-TEST_RESULTS = {
-    "groundedness": data_dir / "groundedness_results.json",
-    "consistency": data_dir / "consistency_results.json",
-    "consistency_llm": data_dir / "consistency_llm_results.json",
-    "tool_usage": data_dir / "tool_usage_results.json",
-    "structure": data_dir / "structure_results.json",
-}
-RESPONSES_JSONL = data_dir / "responses.jsonl"
+from typing import Any, Dict, List, Optional
+
+DATA_DIR = Path(__file__).parent / "data"
+DEFAULT_DB = DATA_DIR / "responses.db"
+
+RESPONSES_DB = DEFAULT_DB
 
 
-def _result_file_mtimes() -> tuple[float, ...]:
-    """last modified times of result files for caching check"""
-    return tuple(
-        path.stat().st_mtime if path.exists() else 0.0 for path in TEST_RESULTS.values()
-    )
+def get_connection(path: Path = DEFAULT_DB) -> duckdb.DuckDBPyConnection:
+    """Return a DuckDB connection, creating the file if it doesn't exist."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    return duckdb.connect(str(path))
+
+
+def db_load_records(
+    path: Optional[Path] = None,
+    include_errors: bool = False,
+) -> List[Dict[str, Any]]:
+    """
+    Load responses from the database and return them as flat record dicts::
+
+        {question_id, question, llm_name, timestamp,
+         actual_output, retrieval_context, tools_called}
+
+    Error rows are excluded unless *include_errors* is True.
+    """
+    path = path or DEFAULT_DB
+    if not path.exists():
+        return []
+
+    conn = get_connection(path)
+    try:
+        where = "" if include_errors else "WHERE NOT is_error"
+        rows = conn.execute(f"""
+            SELECT question_id, question, llm_name, timestamp,
+                   actual_output, retrieval_context, tools_called
+            FROM responses
+            {where}
+            ORDER BY id
+            """).fetchall()
+    finally:
+        conn.close()
+
+    records = []
+    for (
+        qid,
+        question,
+        llm_name,
+        timestamp,
+        actual_output,
+        retrieval_context_json,
+        tools_called_json,
+    ) in rows:
+        retrieval_context = (
+            json.loads(retrieval_context_json) if retrieval_context_json else []
+        )
+        tools_called = json.loads(tools_called_json) if tools_called_json else []
+        records.append(
+            {
+                "question_id": qid,
+                "question": question,
+                "llm_name": llm_name,
+                "timestamp": timestamp,
+                "actual_output": actual_output,
+                "retrieval_context": retrieval_context,
+                "tools_called": tools_called,
+            }
+        )
+    return records
+
+
+def db_load_eval_results(
+    path: Optional[Path] = None,
+    suite: Optional[str] = None,
+) -> List[Dict[str, Any]]:
+    """
+    Load eval results from the database.  Returns a list of dicts loaded from
+    the `eval_results` DuckDB table.
+
+    Optionally filter to a single suite (e.g. ``"groundedness"``).
+    """
+    path = path or DEFAULT_DB
+    if not path.exists():
+        return []
+
+    conn = get_connection(path)
+    try:
+        if suite:
+            rows = conn.execute(
+                "SELECT llm_name, question_id, question, test_name, metric_name, "
+                "score, threshold, passed, reason, error, tools_used "
+                "FROM eval_results WHERE suite = ? ORDER BY id",
+                [suite],
+            ).fetchall()
+        else:
+            rows = conn.execute(
+                "SELECT llm_name, question_id, question, test_name, metric_name, "
+                "score, threshold, passed, reason, error, tools_used "
+                "FROM eval_results ORDER BY id"
+            ).fetchall()
+    finally:
+        conn.close()
+
+    results = []
+    for (
+        llm_name,
+        question_id,
+        question,
+        test_name,
+        metric_name,
+        score,
+        threshold,
+        passed,
+        reason,
+        error,
+        tools_used_json,
+    ) in rows:
+        results.append(
+            {
+                "llm_name": llm_name,
+                "question_id": question_id,
+                "question": question,
+                "test_name": test_name,
+                "metric_name": metric_name,
+                "score": score,
+                "threshold": threshold,
+                "passed": passed,
+                "reason": reason or "",
+                "error": error or "",
+                "tools_used": (
+                    json.loads(tools_used_json)
+                    if tools_used_json and tools_used_json != "null"
+                    else None
+                ),
+            }
+        )
+    return results
 
 
 @st.cache_data
-def load_eval_results(_mtimes: tuple[float, ...] = ()) -> list[dict]:
-    """Load and merge raw eval results from all test result JSON files."""
-    all_results: list[dict] = []
-    for suite, path in TEST_RESULTS.items():
-        if path.exists():
-            try:
-                with open(path) as f:
-                    results = json.load(f)
-                all_results.extend(results)
-            except (json.JSONDecodeError, ValueError):
-                pass
-    return all_results
+def load_eval_results(_db_mtime: float = 0.0) -> list[dict]:
+    """Load all eval results from the DuckDB eval_results table."""
+    return db_load_eval_results(RESPONSES_DB)
 
 
 @st.cache_data
 def load_responses(_mtime: float = 0.0) -> dict[tuple[str, int], list[dict]]:
     """
-    load responses.jsonl and index by (llm_name, question_id).
-    each llm-question key maps to a list of response records (could be 2+ runs).
+    Load responses from DuckDB and index by (llm_name, question_id).
+    Each key maps to a list of response records (could be 2+ runs).
     """
     idx: dict[tuple[str, int], list[dict]] = defaultdict(list)
-    with open(RESPONSES_JSONL) as f:
-        for line in f:
-            line = line.strip()
-            if line:
-                rec = json.loads(line)
-                key = (rec["llm_name"], int(rec["question_id"]))
-                idx[key].append(rec)
+    for rec in db_load_records(RESPONSES_DB):
+        key = (rec["llm_name"], int(rec["question_id"]))
+        idx[key].append(rec)
     return dict(idx)
-
-
-# do not keep the individual response results of these metrics as only make sense
-# comparing multiple
-_AGGREGATE_ONLY_METRICS = {"Consistency (Simple)", "Consistency (AI Judge)"}
-
-LLM_DISPLAY_ORDER: list[str] = [
-    "gpt-oss:120b-cloud",
-    "kimi-k2-thinking:cloud",
-    "glm-5:cloud",
-    "mistral-large-3:675b-cloud",
-]
-
-
-def _llm_sort_key(name: str) -> tuple[int, str]:
-    try:
-        return (LLM_DISPLAY_ORDER.index(name), name)
-    except ValueError:
-        return (len(LLM_DISPLAY_ORDER), name)
 
 
 # order shown in streamlit
@@ -81,7 +172,7 @@ METRIC_DISPLAY_ORDER: list[str] = [
     "Tool Usage",
     "Research Output Structure",
     "Reference Links",
-    "Consistency (Simple)",
+    "Consistency (Cosine)",
     "Consistency (AI Judge)",
     "Answer Relevancy (AI Judge)",
     "Groundedness (AI Judge)",
@@ -92,11 +183,15 @@ METRIC_TOOLTIPS: dict[str, str] = {
     "Tool Usage": "Are all of delegate research, search legislation, get legislation text used.",
     "Research Output Structure": "Does the worker agent return the findings to the manager with the requested headers.",
     "Reference Links": "Are reference links included in the answer provided to the user.",
-    "Consistency (Simple)": "Compare the answers provided when the same question is asked multiple times. Compare using Jaccard Index.",
+    "Consistency (Cosine)": "Compare the answers provided when the same question is asked multiple times using TF cosine similarity.",
     "Consistency (AI Judge)": "Use another LLM to decide if multiple answers to the same question have contradictions, omissions, or additional irrelevant information.",
     "Answer Relevancy (AI Judge)": "AI as a judge metric from DeepEval: How relevant is the answer to the question asked.",
     "Groundedness (AI Judge)": "AI as a judge metric from DeepEval: Has the answer been derived from the information extracted from the Lex API.",
 }
+
+# do not keep the individual response results of these metrics as only make sense
+# comparing multiple
+_AGGREGATE_ONLY_METRICS = {"Consistency (Cosine)", "Consistency (AI Judge)"}
 
 
 def _metric_sort_key(metric: dict) -> int:
@@ -199,10 +294,20 @@ def _status_icon(passed: bool) -> str:
     return "✅" if passed else "❌"
 
 
+def _get_llm_pass_rate(llm: str, hierarchy: dict) -> float:
+    """Calculate the overall pass rate for an LLM."""
+    q_data = hierarchy.get(llm, {})
+    all_m = [r for results in q_data.values() for r in results]
+    total = len(all_m)
+    return (sum(1 for r in all_m if r["passed"]) / total) if total else 0.0
+
+
 def _render_top_summary(hierarchy: dict) -> None:
     """summary rows at the top of the page for each LLM. Expand to show
     mean score per metric across all questions."""
-    for llm in sorted(hierarchy.keys(), key=_llm_sort_key):
+    for llm in sorted(
+        hierarchy.keys(), key=lambda x: (_get_llm_pass_rate(x, hierarchy), x)
+    ):
         q_data = hierarchy[llm]
         all_m = [r for results in q_data.values() for r in results]
         total = len(all_m)
@@ -414,10 +519,10 @@ def _render_single_eval_result(r: dict, run_label: str | None = None) -> None:
 def _render_chat_interaction(records: list[dict]) -> None:
     """
     raw chat interaction(s) for an LLM/question pair.
-    A row/record in responses.jsonl is one run.
+    A row/record in responses.db is one run.
     """
     if not records:
-        st.info("No response records found in responses.jsonl for this combination.")
+        st.info("No response records found in responses.db for this combination.")
         return
 
     run_tabs = st.tabs(
@@ -426,10 +531,8 @@ def _render_chat_interaction(records: list[dict]) -> None:
 
     for tab, rec in zip(run_tabs, records):
         with tab:
-            tc = rec.get("test_case", {})
-
             st.markdown("#### LLM Answer")
-            actual = tc.get("actual_output", "")
+            actual = rec.get("actual_output", "")
             if actual:
                 st.markdown(actual)
             else:
@@ -437,7 +540,7 @@ def _render_chat_interaction(records: list[dict]) -> None:
 
             st.divider()
 
-            tools_called: list[dict] = tc.get("tools_called") or []
+            tools_called: list[dict] = rec.get("tools_called") or []
             if tools_called:
                 st.markdown(f"#### Tools Called ({len(tools_called)})")
                 for i, tool in enumerate(tools_called):
@@ -452,7 +555,11 @@ def _render_chat_interaction(records: list[dict]) -> None:
                     )
                     st.markdown(f"🔧 **{tool_name}**")
                     if is_lex_api:
-                        params = tool.get("input_parameters") or {}
+                        params = (
+                            tool.get("input_parameters")
+                            or tool.get("inputParameters")
+                            or {}
+                        )
                         output_raw = tool.get("output", "")
                         req_col, _ = st.columns([3, 1])
                         with req_col:
@@ -502,7 +609,7 @@ def _render_chat_interaction(records: list[dict]) -> None:
 
             st.divider()
 
-            contexts: list[str] = tc.get("retrieval_context") or []
+            contexts: list[str] = rec.get("retrieval_context") or []
             if contexts:
                 st.markdown(f"#### Retrieved Context ({len(contexts)} items)")
                 for i, ctx in enumerate(contexts):
@@ -516,7 +623,6 @@ def _render_chat_interaction(records: list[dict]) -> None:
             st.json(
                 {
                     "timestamp": rec.get("timestamp"),
-                    "deep_research": rec.get("deep_research"),
                     "llm_name": rec.get("llm_name"),
                     "question_id": rec.get("question_id"),
                 }
@@ -567,36 +673,41 @@ def main() -> None:
 
     st.divider()
 
-    available = [name for name, path in TEST_RESULTS.items() if path.exists()]
-    if not available:
-        st.error("No results files found.")
+    _db_mtime = RESPONSES_DB.stat().st_mtime if RESPONSES_DB.exists() else 0.0
+
+    if not RESPONSES_DB.exists():
+        st.error(
+            "No results found. Run evaluations first: python lex_eval/run_evals.py"
+        )
         st.stop()
 
-    st.caption(f"Loaded results from: {', '.join(available)}")
+    raw_results = load_eval_results(_db_mtime=_db_mtime)
+    if not raw_results:
+        st.warning("eval_results table is empty — run evaluations first.")
 
-    raw_results = load_eval_results(_mtimes=_result_file_mtimes())
     hierarchy = _build_hierarchy(raw_results)
-    _resp_mtime = RESPONSES_JSONL.stat().st_mtime if RESPONSES_JSONL.exists() else 0.0
-    responses = load_responses(_mtime=_resp_mtime) if RESPONSES_JSONL.exists() else {}
+    responses = load_responses(_mtime=_db_mtime) if RESPONSES_DB.exists() else {}
 
     if not responses:
         st.warning(
-            f"responses.jsonl not found at {RESPONSES_JSONL} — chat interaction tab will be empty."
+            f"responses.db not found at {RESPONSES_DB} — chat interaction tab will be empty."
         )
 
     st.markdown(
         """
     <style>
-        .block-container { padding-top: 1.8rem; }
+        .block-container { padding-top: 1.7rem; }
     </style>
-    """,
+""",
         unsafe_allow_html=True,
     )
 
     _render_top_summary(hierarchy)
     st.divider()
 
-    llm_names = sorted(hierarchy.keys(), key=_llm_sort_key)
+    llm_names = sorted(
+        hierarchy.keys(), key=lambda x: (_get_llm_pass_rate(x, hierarchy), x)
+    )
     llm_tabs = st.tabs(llm_names)
 
     for tab, llm in zip(llm_tabs, llm_names):
