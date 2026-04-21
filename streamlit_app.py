@@ -174,8 +174,9 @@ METRIC_DISPLAY_ORDER: list[str] = [
     "Reference Links",
     "Consistency (Cosine)",
     "Consistency (AI Judge)",
-    "Answer Relevancy (AI Judge)",
-    "Groundedness (AI Judge)",
+    "Answer Relevancy",
+    "Research Groundedness",
+    "Response Groundedness",
 ]
 
 # hover over tips on app summary tables
@@ -184,9 +185,10 @@ METRIC_TOOLTIPS: dict[str, str] = {
     "Research Output Structure": "Does the worker agent return the findings to the manager with the requested headers.",
     "Reference Links": "Are reference links included in the answer provided to the user.",
     "Consistency (Cosine)": "Compare the answers provided when the same question is asked multiple times using TF cosine similarity.",
-    "Consistency (AI Judge)": "Use another LLM to decide if multiple answers to the same question have contradictions, omissions, or additional irrelevant information.",
-    "Answer Relevancy (AI Judge)": "AI as a judge metric from DeepEval: How relevant is the answer to the question asked.",
-    "Groundedness (AI Judge)": "AI as a judge metric from DeepEval: Has the answer been derived from the information extracted from the Lex API.",
+    "Consistency (AI Judge)": "AI as a judge metric: Decide if multiple answers to the same question have contradictions, omissions, or additional irrelevant information.",
+    "Answer Relevancy": "AI as a judge metric: How relevant is the answer to the question asked.",
+    "Research Groundedness": "AI as a judge metric: Has the research output been derived from the information extracted from the Lex API.",
+    "Response Groundedness": "AI as a judge metric: Has the final response to the user been derived from the information extracted from the Lex API.",
 }
 
 # do not keep the individual response results of these metrics as only make sense
@@ -327,7 +329,7 @@ def _render_top_summary(hierarchy: dict) -> None:
             by_metric: dict[str, list[float]] = defaultdict(list)
             thresholds: dict[str, float] = {}
             for m in all_m:
-                name = m["metric_name"]
+                name = m["metric_name"].strip()
                 by_metric[name].append(m["score"])
                 thresholds[name] = m["threshold"]
 
@@ -401,7 +403,7 @@ def _render_metric_summary_table(metrics: list[dict]) -> None:
     """
     rows_html = ""
     for m in metrics:
-        name = m["metric_name"]
+        name = m["metric_name"].strip()
         score = m["score"]
         threshold = m["threshold"]
         passed = m["passed"]
@@ -463,7 +465,7 @@ def _render_metric_detail(metrics: list[dict]) -> None:
     aggregated metrics also shows per-run breakdown.
     """
     for m in metrics:
-        name = m["metric_name"]
+        name = m["metric_name"].strip()
         has_range = "min_score" in m
         icon = _status_icon(m["passed"])
 
