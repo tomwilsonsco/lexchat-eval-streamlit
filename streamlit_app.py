@@ -187,8 +187,8 @@ METRIC_TOOLTIPS: dict[str, str] = {
     "Consistency (Cosine)": "Compare the answers provided when the same question is asked multiple times using TF cosine similarity.",
     "Consistency (AI Judge)": "AI as a judge metric: Decide if multiple answers to the same question have contradictions, omissions, or additional irrelevant information.",
     "Answer Relevancy": "AI as a judge metric: How relevant is the answer to the question asked.",
-    "Research Groundedness": "AI as a judge metric: Has the research output been derived from the information extracted from the Lex API.",
-    "Response Groundedness": "AI as a judge metric: Has the final response to the user been derived from the information extracted from the Lex API.",
+    "Research Groundedness": "AI as a judge metric: Measures whether the research summary is grounded exclusively in the legal text retrieved from the Lex API, penalising any external inferences or factual distortions.",
+    "Response Groundedness": "AI as a judge metric: Evaluates whether the final response is strictly grounded in the research worker's summary, ensuring no new information or contradictions have been introduced.",
 }
 
 # do not keep the individual response results of these metrics as only make sense
