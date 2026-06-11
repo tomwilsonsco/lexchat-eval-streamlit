@@ -293,7 +293,9 @@ def _score_badge(score: float | str, level: str | None = None) -> str:
 
 
 def _status_icon(passed: bool) -> str:
-    return ":green[P]" if passed else ":red[F]"
+    colour = "#3fb950" if passed else "#f85149"
+    text = "Passed" if passed else "Failed"
+    return f'<span style="color:{colour};font-weight:600;">{text}</span>'
 
 
 def _get_llm_pass_rate(llm: str, hierarchy: dict) -> float:
@@ -471,6 +473,7 @@ def _render_metric_detail(metrics: list[dict]) -> None:
 
         st.markdown(
             f"**{name}** {icon} — score: `{m['score']:.3f}`",
+            unsafe_allow_html=True
         )
         with st.container():
             if has_range:
@@ -641,7 +644,7 @@ def _render_question_block(
     all_pass = all(m["passed"] for m in metrics)
     n_pass = sum(1 for m in metrics if m["passed"])
     n_total = len(metrics)
-    icon = "✅" if all_pass else ("⚠️" if n_pass > 0 else "❌")
+    icon = ":green[Pass]" if all_pass else (":red[Some failed]" if n_pass > 0 else ":red[All failed]")
 
     with st.expander(
         f"{icon}  **Q{qid}** — {question_text[:120]}{'…' if len(question_text) > 120 else ''}  "
