@@ -293,7 +293,7 @@ def _score_badge(score: float | str, level: str | None = None) -> str:
 
 
 def _status_icon(passed: bool) -> str:
-    return "✅" if passed else "❌"
+    return ":green[P]" if passed else ":red[F]"
 
 
 def _get_llm_pass_rate(llm: str, hierarchy: dict) -> float:
@@ -494,7 +494,7 @@ def _render_single_eval_result(r: dict, run_label: str | None = None) -> None:
     """one raw eval result entry."""
     passed = r["passed"]
     colour = "#3fb950" if passed else "#f85149"
-    label = "✓ Passed" if passed else "✗ Failed"
+    label = "Passed" if passed else "Failed"
     prefix = f"{run_label} — " if run_label else ""
 
     st.markdown(
