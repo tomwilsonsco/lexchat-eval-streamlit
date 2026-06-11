@@ -644,11 +644,12 @@ def _render_question_block(
     all_pass = all(m["passed"] for m in metrics)
     n_pass = sum(1 for m in metrics if m["passed"])
     n_total = len(metrics)
-    icon = ":green[Pass]" if all_pass else (":red[Some failed]" if n_pass > 0 else ":red[All failed]")
+    
+    count_colour = "red" if n_pass < n_total else "green"
 
     with st.expander(
-        f"{icon}  **Q{qid}** — {question_text[:120]}{'…' if len(question_text) > 120 else ''}  "
-        f"*({n_pass}/{n_total} metrics passed)*",
+        f"**Q{qid}** — {question_text[:120]}{'…' if len(question_text) > 120 else ''}  "
+        f":{count_colour}[*({n_pass}/{n_total} metrics passed)*]",
         expanded=False,
     ):
         _render_metric_summary_table(metrics)
