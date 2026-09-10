@@ -1,0 +1,6 @@
+streamlit>=1.31.0
+duckdb>=1.0
+numpy
+pydantic
+scikit-learn
+python-dotenv
